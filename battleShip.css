@@ -1,0 +1,173 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: white;
+}
+
+/* Header */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+p {
+    margin: 0 0 20px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Battle Grid */
+.battleBox {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.box {
+    width: 45px;
+    height: 45px;
+    background-color: #e6e6e6;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.box.found {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+}
+
+.box.notfound {
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+/* Restart Button */
+.restart-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+}
+
+.restart-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.popup-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #dc3545;
+}
+
+.solution-grid {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.solution-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.solution-cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background-color: #f9f9f9;
+    margin: 2px;
+    border-radius: 3px;
+}
+
+.solution-cell[data-value='1'] {
+    background-color: #28a745;
+    color: white;
+}
+
+.close-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+    background: #0056b3;
+}
