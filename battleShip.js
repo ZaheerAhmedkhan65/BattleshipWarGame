@@ -1,7 +1,7 @@
 let array = [];
 let onesInserted = 0; // Counter for the number of 1s inserted
 let gridSize = 5; // Size of the grid (5x5)
-
+let points = 0;
 // Function to generate a new grid with exactly six 1s
 function generateGrid() {
     array = [];
@@ -70,6 +70,7 @@ function renderBattleGrid() {
             // Handle user guess
             if (box.getAttribute('data-value') == 1) {
                 found++;
+                points += 10;
                 box.classList.add('found');
                 box.textContent = '🚢';
                 if (found == ships) { // Check if all ships are found
@@ -81,6 +82,9 @@ function renderBattleGrid() {
                 alert(`You Found a Ship! ${ships - found} more ships to find. ${tries} tries left.`);
             } else {
                 tries--;
+                if (points > 0) {
+                    points -= 5;
+                }
                 box.classList.add('notfound');
 
                 if (tries == 0) {
@@ -89,6 +93,7 @@ function renderBattleGrid() {
                 }
                 alert(`Not Found. ${tries} tries left to find ${ships - found} ships.`);
             }
+            updatePoints();
         });
     });
 }
@@ -153,15 +158,28 @@ function initializeGame() {
     tries = 10; // Set number of tries to 10
     ships = 6;  // Set number of ships to 6
     found = 0;
+    points = 0;
     gameEnded = false;
     renderBattleGrid();
     hideRestartButton();
+    updatePoints();
+}
+function updatePoints() {
+    // Update the button's disabled state based on current points
+    let solutionButton = document.getElementById('solutionButton');
+    if (points > 0) {
+        solutionButton.disabled = false;  // Enable the button if points are > 0
+    } else {
+        solutionButton.disabled = true;  // Disable the button if points are <= 0
+    }
+
+    return points;
 }
 
-//Solution button
+let sd = updatePoints();
 let solutionButton = document.getElementById('solutionButton');
-solutionButton.addEventListener('click',()=>{
-   showPopup(false);
+solutionButton.addEventListener('click', () => {
+    showPopup(false);
 });
 
 // Add Restart button and functionality

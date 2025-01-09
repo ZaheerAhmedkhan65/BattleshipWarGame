@@ -171,3 +171,26 @@ p {
 .close-btn:hover {
     background: #0056b3;
 }
+.d-flex{
+    display: flex;
+} 
+.align-items-center{
+    align-items: center;
+} 
+.justify-content-between{
+    justify-content: space-between;
+}
+.gameTitle{
+    font-weight: bold;
+    font-size: 20px;
+}
+#solutionButton{
+    border: 1px solid #007bff;
+    border-radius:50%;
+    background-color: transparent;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#solutionButton i{
+    font-size: 20px;
+}
