@@ -2,6 +2,8 @@ let array = [];
 let onesInserted = 0; // Counter for the number of 1s inserted
 let gridSize = 5; // Size of the grid (5x5)
 let points = 0;
+let notification = document.querySelector(".notification");
+notification.style.display = "none";
 // Function to generate a new grid with exactly six 1s
 function generateGrid() {
     array = [];
@@ -62,7 +64,7 @@ function renderBattleGrid() {
 
             // Check if the user has any tries left
             if (tries == 0) {
-                alert('You Lost! No more tries left.');
+                showNotification(`<p class="message">You Lost! No more tries left.</p>`);
                 showPopup(true); // Show popup with the solution
                 return;
             }
@@ -74,12 +76,12 @@ function renderBattleGrid() {
                 box.classList.add('found');
                 box.textContent = '🚢';
                 if (found == ships) { // Check if all ships are found
-                    alert('You Won! You found all the ships.');
+                    showNotification(`<p class="message">You Won! You found all the ships.</p>`);
                     gameEnded = true;
                     showRestartButton();
                     return;
                 }
-                alert(`You Found a Ship! ${ships - found} more ships to find. ${tries} tries left.`);
+                showNotification(`<p class="message">You Found a Ship! <strong> ${ships - found} </strong> more ships to find.`)
             } else {
                 tries--;
                 if (points > 0) {
@@ -91,7 +93,7 @@ function renderBattleGrid() {
                     showPopup(true); // Show popup with the solution
                     return;
                 }
-                alert(`Not Found. ${tries} tries left to find ${ships - found} ships.`);
+                showNotification(`<p class="message">Not Found.  <strong>${tries} </strong>tries left to find <strong> ${ships - found} </strong> ships.</p>`)
             }
             updatePoints();
         });
@@ -160,6 +162,7 @@ function initializeGame() {
     found = 0;
     points = 0;
     gameEnded = false;
+    notification.innerHTML = "";
     renderBattleGrid();
     hideRestartButton();
     updatePoints();
@@ -167,8 +170,8 @@ function initializeGame() {
 function updatePoints() {
     // Update the button's disabled state based on current points
     let solutionButton = document.getElementById('solutionButton');
-    if (points > 0) {
-        solutionButton.disabled = false;  // Enable the button if points are > 0
+    if (points > 10) {
+        solutionButton.disabled = false;  // Enable the button if points are > 10
     } else {
         solutionButton.disabled = true;  // Disable the button if points are <= 0
     }
@@ -176,7 +179,10 @@ function updatePoints() {
     return points;
 }
 
-let sd = updatePoints();
+function showNotification(message){
+    notification.style.display = "block";
+    notification.innerHTML = message;
+}
 let solutionButton = document.getElementById('solutionButton');
 solutionButton.addEventListener('click', () => {
     showPopup(false);

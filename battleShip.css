@@ -9,6 +9,9 @@ body {
     min-height: 100vh;
     background-color: #f4f4f9;
     color: #333;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .container {
@@ -193,4 +196,9 @@ p {
 }
 #solutionButton i{
     font-size: 20px;
+}
+
+.message{
+    font-size: 20px;
+    font-weight: bolder;
 }
